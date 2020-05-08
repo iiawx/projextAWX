@@ -17,3 +17,4 @@
     - name: ping-06
       ping:
     - name: ping-07
+      ping: 
