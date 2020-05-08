@@ -1,6 +1,6 @@
 ---
 
-- name: Linux ping
+- name: Linux pinging
   hosts: all
   gather_facts: false
   tasks:
