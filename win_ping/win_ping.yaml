@@ -1,0 +1,7 @@
+---
+- name: Windows Ping
+  hosts: windows
+  
+  tasks:
+        - name: "Testing winrm connectivity"
+          win_ping:
