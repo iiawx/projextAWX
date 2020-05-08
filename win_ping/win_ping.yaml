@@ -1,6 +1,6 @@
 ---
 - name: Windows Ping
-  hosts: windows
+  hosts: all
   
   tasks:
         - name: "Testing winrm connectivity"
