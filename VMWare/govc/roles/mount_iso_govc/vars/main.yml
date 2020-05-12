@@ -1,0 +1,7 @@
+---
+#vcenter_username: "Enter User account here ex. VCSvcAcct@my.domain"
+vm_guest: "{{ NewHostName }}"
+# Enter the correct path to iso files on datastore below
+#iso_datastore: /"{{ Datacenter }}"/datastore/PATH_TO_ISO
+esxi_datacenter: "{{ Datacenter }}"
+esxi_hostname: "{{ ESXI_Host }}"

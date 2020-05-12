@@ -1,0 +1,26 @@
+---
+
+- include_vars:
+    dir: 'vars/'
+
+- name: Create New VM
+  command: /go/bin/govc vm.create -annotation="{{ vm_notes }}" -m="{{ vm_memory }}" -c="{{ vm_cpu }}" -disk="{{ vm_disk }}GB" -ds="{{ datastore }}" -folder=/"{{ esxi_datacenter }}"/vm/Infrastructure/RedHat/AutoDeploy -g="{{ guest_id }}" -host="{{ esxi_hostname }}" -net="{{ vm_network }}" -net.adapter=vmxnet3 -on=false "{{ vm_guest | upper }}"
+
+  environment:
+    #GOVC_URL: "https://URL-FOR-VCenter/sdk"
+    GOVC_USERNAME: "{{ vcenter_username }}"
+    # Create vault secret containing password for VC Svc account
+    #GOVC_PASSWORD: "{{ VMSvcAcct_Pass }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "{{ esxi_datacenter }}"
+
+- name: Add CPU and Memory hot-add
+  command: /go/bin/govc vm.change -vm "{{ vm_guest | upper }}" -e vcpu.hotadd=TRUE -e mem.hotadd=TRUE
+
+  environment:
+    #GOVC_URL: "https://URL-FOR-VCenter/sdk"
+    GOVC_USERNAME: "{{ vcenter_username }}"
+    # Create vault secret containing password for VC Svc account
+    #GOVC_PASSWORD: "{{ VMSvcAcct_Pass }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "{{ esxi_datacenter }}"

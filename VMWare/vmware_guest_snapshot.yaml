@@ -1,0 +1,38 @@
+---
+- name: "Get VM Info and create a snapshot"
+  hosts: all
+
+  vars:
+   vcenter_username:
+   vcenter_password:
+   vcenter_hostname:
+   vcenter_datacenter:
+   # Set the name of the VM you will be taking a snapshot of below...
+   vm_name:
+   snapshot_name: "{{ vm_name }}_{{ ansible_date_time.date }}"
+
+  tasks:
+    - name: "Gather info from VM"
+      vmware_guest_info:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: no
+        name: "{{vm_name}}"
+      delegate_to: localhost
+      register: info
+
+    - name: Create a snapshot
+      vmware_guest_snapshot:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: no
+        folder: "/{{ vcenter_datacenter }}/vm/"
+        name: "{{ vm_name }}"
+        state: present
+        snapshot_name: "{{ snapshot_name }}"
+        description: "Automated by SkunkWorks"
+      delegate_to: localhost

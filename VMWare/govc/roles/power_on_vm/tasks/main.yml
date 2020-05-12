@@ -1,0 +1,30 @@
+--- # This playbook will power on an existing VM using govc
+# https://github.com/vmware/govmomi/blob/master/govc/USAGE.md
+
+- name: Power on Virtual Machine
+  command: "govc vm.power -on {{ vm_guest | upper }}"
+  no_log: false
+  environment:
+    GOVC_URL: "{{ VMWARE_HOST }}"
+    GOVC_USERNAME: "{{ VMWARE_USER }}"
+    GOVC_PASSWORD: "{{ VMWARE_PASSWORD }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "yourdc"
+
+- name: "Waiting to ensure {{ vm_guest }} is online and accessible via ssh."
+  wait_for_connection:
+    connect_timeout: 20
+    sleep: 5
+    delay: 5
+    timeout: 300
+
+- name: "The following VM has been powered on and is back online {{ vm_guest }}."
+  mail:
+    host: smtpout.fiu.edu
+    subject: '{{ vm_guest }} has been powered on and is now back online.'
+    from: 
+    body: "Automated power on of {{ vm_guest }} has completed."
+    to: ""
+    charset: utf8
+  delegate_to: localhost
+  tags: mail

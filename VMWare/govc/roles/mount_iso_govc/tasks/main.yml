@@ -1,0 +1,39 @@
+--- # This playbook will modify an existing VM and will mount an iso for provisioning using govc
+# https://github.com/vmware/govmomi/blob/master/govc/USAGE.md
+
+- include_vars:
+    dir: 'vars/'
+
+- name: Add cdrom to virtual machine
+  command: "/go/bin/govc device.cdrom.add -vm {{ vm_guest | upper }}"
+  no_log: true
+  environment:
+    #GOVC_URL: "https://URL-FOR-VCenter/sdk"
+    GOVC_USERNAME: "{{ vcenter_username }}"
+    # Create vault secret containing password for VC Svc account
+    #GOVC_PASSWORD: "{{ VMSvcAcct_Pass }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "{{ esxi_datacenter }}"
+
+- name: Mount ISO on Virtual Machine
+  # Replace DATASTORE_NAME and DATASTORE_FOLDER with appropriate values
+  #command: "/go/bin/govc device.cdrom.insert -vm {{ vm_guest | upper }} -ds={{ DATASTORE_NAME }} DATASTORE_FOLDER/{{ vm_guest | lower }}.my.domain"
+  no_log: true
+  environment:
+    #GOVC_URL: "https://URL-FOR-VCenter/sdk"
+    GOVC_USERNAME: "{{ vcenter_username }}"
+    # Create vault secret containing password for VC Svc account
+    #GOVC_PASSWORD: "{{ VMSvcAcct_Pass }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "{{ esxi_datacenter }}"
+
+- name: Power on Virtual Machine
+  command: "/go/bin/govc vm.power -on {{ vm_guest | upper }}"
+  no_log: true
+  environment:
+    #GOVC_URL: "https://URL-FOR-VCenter/sdk"
+    GOVC_USERNAME: "{{ vcenter_username }}"
+    # Create vault secret containing password for VC Svc account
+    #GOVC_PASSWORD: "{{ VMSvcAcct_Pass }}"
+    GOVC_INSECURE: "true"
+    GOVC_DATACENTER: "{{ esxi_datacenter }}"

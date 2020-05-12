@@ -1,0 +1,12 @@
+---
+#vcenter_username: "Enter User account here ex. VCSvcAcct@my.domain"
+vm_guest: "{{ NewHostName }}"
+esxi_datacenter: "{{ Datacenter }}"
+#datastore: "Enter path to datastore here"
+esxi_hostname: "{{ ESXI_HostAT }}"
+guest_id: "{{ GuestID }}"
+vm_notes: "{{ VM_Notes }}"
+vm_network: "{{ Subnet }}"
+vm_cpu: "{{ VM_Cpu }}"
+vm_memory: "{{ VM_Memory }}"
+vm_disk: "{{ VM_Disk }}"

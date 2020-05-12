@@ -1,0 +1,4 @@
+- hosts: localhost
+
+  roles:
+    - power_on_vm
