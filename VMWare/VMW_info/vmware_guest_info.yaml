@@ -1,0 +1,22 @@
+---
+- name: "Get VM Info"
+  hosts: localhost
+
+  # Setup these variables to match your VM environment.
+  vars:
+   vcenter_username:
+   vcenter_password:
+   vcenter_hostname:
+   vcenter_datacenter:
+   # Set the name of the VM you will be targeting below...
+   vm_name:
+
+  tasks:
+    - name: "Gather info from VM"
+      vmware_guest_info:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: no
+        name: "{{ vm_name }}"
