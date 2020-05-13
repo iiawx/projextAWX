@@ -14,15 +14,11 @@
     # VM configs
     vm_networks: 
     vm_name: 
-    vm_folder:
     datacenter_name:
     vm_template:
-    vm_datastore:    
     vm_num_cpus:
     vm_memory:
-    
-    
-    
+       
   tasks:
   - name: Clone the template
     vmware_guest:
@@ -33,9 +29,9 @@
       name: "{{ vm_name }}"
       template: "{{ vm_template }}"
       datacenter: "{{ datacenter_name }}"
-      folder: /Apps/AutoDeploy
+      folder: 
       cluster: "{{ cluster_name }}"
-      datastore: " DS_SSD0 " 
+      datastore: 
       hardware: 
         num_cpus: "{{ vm_num_cpus }}"
         memory_mb: "{{ vm_memory }}" 
