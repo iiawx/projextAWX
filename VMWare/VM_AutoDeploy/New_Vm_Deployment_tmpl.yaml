@@ -6,7 +6,7 @@
     vcenter_server: 
     vcenter_user: 
     vcenter_pass: 
-    datacenter_name: 
+    #datacenter_name: 
     # This is hostname of particular ESXi server and/or cluster on which user wants VM to be deployed
     cluster_name:
     #esxi_hostname:
@@ -22,15 +22,15 @@
       validate_certs: False
       name: "{{ vm_name }}"
       template: 
-      datacenter: "{{ datacenter_name }}"
+      datacenter: 
       folder: 
       cluster: "{{ cluster_name }}"
       datastore:  
       hardware: 
         num_cpus:
         memory_mb:  
-      networks: "{{ vm_networks }}" 
-      #- name: 
+      networks:  
+      - name: "{{ vm_networks }}"
         #ip: 
         #netmask:  
         #gateway:  
@@ -39,6 +39,6 @@
       #customization:
         #hostname: "{{ vm_name }}"
         #dns_servers:        
-      state: poweredon
+      #state: poweredon
       #wait_for_ip_address: yes
     delegate_to: localhost
