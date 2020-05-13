@@ -1,12 +1,13 @@
 ---
-- name:  Clone a virtual machine from template and customize
-   hosts: 192.168.3.79
-  gather_facts: no
+- name: "Clone a virtual machine from template and customize"
+  hosts: all
+
+  # Setup these variables to match your VM environment.
   vars:
     vcenter_server: 
     vcenter_user: 
     vcenter_pass: 
-    # datacenter_name: 
+    datacenter_name: 
     # This is hostname of particular ESXi server and/or cluster on which user wants VM to be deployed
     cluster_name:
     # esxi_hostname:
