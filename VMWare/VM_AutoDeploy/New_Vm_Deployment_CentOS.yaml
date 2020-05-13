@@ -1,0 +1,28 @@
+- name:  Clone a virtual machine from Linux template and customize
+  vmware_guest:
+    hostname: 
+    username: 
+    password: 
+    validate_certs: no
+    datacenter: 
+    state: present
+    folder: 
+    template: 
+    name: 
+    esxi_hostname:
+    cluster:
+    
+    networks:
+      - name: 
+        ip: 
+        netmask:
+        gateway:         
+    wait_for_ip_address: True
+    customization:
+      domain: "{{ lab.yy }}"
+      dns_servers:
+        - 192.168.3.82
+      dns_suffix:
+        - lab.yy
+        
+  delegate_to: 

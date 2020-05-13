@@ -1,0 +1,23 @@
+---
+- name: Create a virtual machine on given ESXi hostname
+  vmware_guest:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: no
+    folder: 
+    name: vm01
+    state: poweredon
+    guest_id: centos64Guest
+    # This is hostname of particular ESXi server on which user wants VM to be deployed
+    esxi_hostname: "{{ esxi_hostname }}"
+    disk:
+    - size_gb: 
+      type: thin
+      datastore: 
+    hardware:
+      memory_mb: 
+      num_cpus: 
+      scsi: paravirtual
+    networks:
+    - name: 
