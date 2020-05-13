@@ -1,28 +1,41 @@
-- name:  Clone a virtual machine from Linux template and customize
-  vmware_guest:
-    hostname: 
-    username: 
-    password: 
-    validate_certs: no
-    datacenter: 
-    state: present
-    folder: 
-    template: 
-    name: 
-    esxi_hostname:
-    cluster:
-    
-    networks:
+---
+- name:  Clone a virtual machine from template and customize
+  - hosts: 
+  gather_facts: no
+  vars:
+    vcenter_server: 
+    vcenter_user: 
+    vcenter_pass: 
+    datacenter_name: 
+    # This is hostname of particular ESXi server and/or cluster on which user wants VM to be deployed
+    cluster_name:
+    #esxi_hostname:    
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: "{{ vcenter_server }}"
+      username: "{{ vcenter_user }}"
+      password: "{{ vcenter_pass }}"
+      validate_certs: False
+      name: 
+      template: 
+      datacenter: "{{ datacenter_name }}"
+      folder: 
+      cluster: "{{ cluster_name }}"
+      datastore:  
+      hardware: 
+        memory_mb:  
+        num_cpus: 
+      networks: 
       - name: 
         ip: 
-        netmask:
-        gateway:         
-    wait_for_ip_address: True
-    customization:
-      domain: 
-      dns_servers:
-        - 
-      dns_suffix:
-        - 
-        
-  delegate_to: 
+        netmask:  
+        gateway:  
+        type: static
+        dns_servers: 
+      customization:
+        hostname: 
+        dns_servers:        
+      state: poweredon
+      wait_for_ip_address: yes
+    delegate_to: localhost
