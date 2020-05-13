@@ -19,10 +19,10 @@
         gateway:         
     wait_for_ip_address: True
     customization:
-      domain: "{{ lab.yy }}"
+      domain: 
       dns_servers:
-        - 192.168.3.82
+        - 
       dns_suffix:
-        - lab.yy
+        - 
         
   delegate_to: 
