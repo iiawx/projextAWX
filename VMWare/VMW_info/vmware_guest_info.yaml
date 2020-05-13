@@ -1,6 +1,6 @@
 ---
 - name: "Get VM Info"
-  hosts: all
+  hosts: 192.168.3.79
 
   # Setup these variables to match your VM environment.
   vars:
