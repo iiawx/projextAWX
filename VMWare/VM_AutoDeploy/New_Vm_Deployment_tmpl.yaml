@@ -9,7 +9,10 @@
     datacenter_name: 
     # This is hostname of particular ESXi server and/or cluster on which user wants VM to be deployed
     cluster_name:
-    #esxi_hostname:    
+    #esxi_hostname:
+    #VM configs
+    vm_networks: 
+    vm_name: 
   tasks:
   - name: Clone the template
     vmware_guest:
@@ -17,25 +20,25 @@
       username: "{{ vcenter_user }}"
       password: "{{ vcenter_pass }}"
       validate_certs: False
-      name: 
+      name: "{{ vm_name }}"
       template: 
       datacenter: "{{ datacenter_name }}"
       folder: 
       cluster: "{{ cluster_name }}"
       datastore:  
       hardware: 
+        num_cpus:
         memory_mb:  
-        num_cpus: 
-      networks: 
-      - name: 
-        ip: 
-        netmask:  
-        gateway:  
-        type: static
-        dns_servers: 
-      customization:
-        hostname: 
-        dns_servers:        
+      networks: "{{ vm_networks }}" 
+      #- name: 
+        #ip: 
+        #netmask:  
+        #gateway:  
+        #type: static
+        #dns_servers: 
+      #customization:
+        #hostname: "{{ vm_name }}"
+        #dns_servers:        
       state: poweredon
-      wait_for_ip_address: yes
+      #wait_for_ip_address: yes
     delegate_to: localhost
