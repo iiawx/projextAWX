@@ -33,7 +33,7 @@
       name: "{{ vm_name }}"
       template: "{{ vm_template }}"
       datacenter: "{{ datacenter_name }}"
-      folder: /LAB_Datacenter/Apps/AutoDeploy
+      folder: /Apps/AutoDeploy
       cluster: "{{ cluster_name }}"
       datastore: " DS_SSD0 " 
       hardware: 
