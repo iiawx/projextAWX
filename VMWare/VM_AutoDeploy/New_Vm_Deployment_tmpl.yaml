@@ -18,7 +18,8 @@
     vm_template:
     vm_num_cpus:
     vm_memory:
-       
+    vm_annotation:
+    
   tasks:
   - name: Clone the template
     vmware_guest:
@@ -27,6 +28,7 @@
       password: "{{ vcenter_pass }}"
       validate_certs: False
       name: "{{ vm_name }}"
+      annotation: "{{ vm_annotation }}"
       template: "{{ vm_template }}"
       datacenter: "{{ datacenter_name }}"
       folder: /Apps/AutoDeploy
