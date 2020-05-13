@@ -1,6 +1,6 @@
 ---
 - name:  Clone a virtual machine from template and customize
-   hosts: all
+   hosts: 192.168.3.79
   gather_facts: no
   vars:
     vcenter_server: 
