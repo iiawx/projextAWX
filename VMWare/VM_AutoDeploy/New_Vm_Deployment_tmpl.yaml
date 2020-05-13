@@ -29,9 +29,9 @@
       name: "{{ vm_name }}"
       template: "{{ vm_template }}"
       datacenter: "{{ datacenter_name }}"
-      folder: 
+      folder: /Apps/AutoDeploy
       cluster: "{{ cluster_name }}"
-      datastore: 
+      datastore: DS_SSD0
       hardware: 
         num_cpus: "{{ vm_num_cpus }}"
         memory_mb: "{{ vm_memory }}" 
